@@ -13,7 +13,6 @@ app.post('/teachersignup',async (req,resp)=>{
     let result=await teacher.save();
     resp.send(result);
 
-
 });
 app.post('/studentsignup',async (req,resp)=>{
 
