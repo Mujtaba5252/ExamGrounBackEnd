@@ -23,5 +23,42 @@ app.post('/studentsignup',async (req,resp)=>{
 
 });
 
+app.post('/SignIn',async(req,resp)=>{
+   let teacher=await teacherSchema.findOne(req.body).select("-password");
+   if(req.body.email && req.body.password)
+   {
+    
+        if(teacher)
+        {
+        resp.send(teacher);
+        }else{
+        resp.send({result:"Record not Found"});
+        }
+   }
+   else{
+    resp.send({result:"Record not Found"});
+   }
+  
+
+});
+
+app.post('/StudentSignIn',async(req,resp)=>{
+    let student=await StudentSchema.findOne(req.body).select("-password");
+    if(req.body.email && req.body.password)
+    {
+         if(student)
+         {
+         resp.send(student);
+         }else{
+         resp.send({result:"Record not Found"});
+         }
+    }
+    else{
+     resp.send({result:"Record not Found"});
+    }
+   
+ 
+ });
+
 
 app.listen(5000);
